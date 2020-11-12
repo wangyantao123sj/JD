@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/detail.css">
+</head>
+
+<body>
+    <div id="header"></div>
+    <div class="nav"></div>
+    <ul id="banner">
+        <!-- <li>
+            <img src="" alt="">
+            <span id="name"></span>
+
+            <b id="price">100</b>
+        </li> -->
+    </ul>
+    <div class="bg">
+        <div></div>
+        <p>&nbsp;&nbsp;京&nbsp;&nbsp;&nbsp;东&nbsp;&nbsp;&nbsp;价</p>
+    </div>
+    <input type="button" value="加入购物车" id="btn">
+    <div class="fxg"></div>
+    <script src="js/jquery1.11.js"></script>
+    <script>
+        var btn = $("#btn")
+        let id = location.search.split("=")[1];
+        var gwc = document.getElementsByClassName("gwc")
+        console.log(id)
+        localStorage.setItem("productDatas", JSON.stringify(id));
+        // localStorage.setItem("sc", JSON.stringify(id));
+        $.get(`http://localhost:3000/productlist?id=${id}`).then(
+            data => {
+                var str = "";
+                str += `
+                
+                <li>
+                    <img src="${data[0].imgUrl}" alt="">
+                    <span>${data[0].title} </span>
+                    <b><a>￥</a>${data[0].price}</b>
+                </li>
+            
+                `
+                $("#banner").html(str);
+            }
+        )
+        $("#btn").click(function() {
+            $(window).attr('location', 'shoping-car.html');
+            localStorage.setItem(key, str)
+        })
+    </script>
+</body>
+
+</html>

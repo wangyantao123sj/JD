@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="css/zhuce.css">
+</head>
+
+<body>
+    <div class="yinying">
+        <div id="header">
+            <a href="index.html"><img src="images/注册logo.png" alt=""></a>
+            <p>已有账号？<a href="denglu.html">请登录></a></p>
+        </div>
+    </div>
+    <div class="banner">
+        <div class="zhanghao">
+            <p>账&nbsp;&nbsp;&nbsp;&nbsp;号</p><input type="text" placeholder="请设置账号" id="zhanghao">
+        </div>
+        <div class="mima">
+            <p>密&nbsp;&nbsp;&nbsp;&nbsp;码</p><input type="password" placeholder="请设置密码" id="mima">
+        </div>
+        <input type="button" value="注册" id="btn">
+
+    </div>
+    <div class="footer"><img src="images/登录2.png" alt=""></div>
+    <script src="js/jquery1.11.js"></script>
+    <script>
+        $("#btn").click(function() {
+            // var username = $("#zhanghao").val();
+            // var password = $("#mima").val();
+            $.get("http://jx.xuzhixiang.top/ap/api/reg.php", {
+                username: $("#zhanghao").val(),
+                password: $("#mima").val()
+            }).then(foo => {
+                if (foo.code == 1) {
+                    window.location.href = "denglu.html"
+                } else {
+                    alert("注册失败，账号名重复")
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
